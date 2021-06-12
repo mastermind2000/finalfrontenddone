@@ -29,7 +29,8 @@ const Sauvegarde = () => {
   const [data, setData] = useState([]);
   const [trigger, setTrigger] = useState(false);
   const [trig, setTrig] = useState(false);
-  const url = "https://4veg3aetvd.execute-api.us-east-2.amazonaws.com/dev/list";
+  const url =
+    "https://0u6vb56kth.execute-api.us-east-2.amazonaws.com/dev/monitor";
   const handleClick = () => {
     setTrigger(true);
   };
