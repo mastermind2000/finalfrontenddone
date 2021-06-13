@@ -3,6 +3,8 @@ import ReactDOM, { render } from "react-dom";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
 import ReactTable from "react-table";
+import MaterialTable from "material-table";
+
 //import '../../react-table/react-table.css';
 import { TextField, Checkbox, Radio, Select } from "final-form-material-ui";
 import {
@@ -31,8 +33,29 @@ const About = () => {
   useEffect(() => {
     axios.get(url).then((json) => setData(json.data));
 
-    console.log(data);
+    //console.log(data);
   });
+  //console.log(data);
+  var temp = data;
+  console.log(temp);
+  const customTable = () => {
+    const data = temp;
+    const columns = [
+      {
+        title: "Email",
+        field: "email"
+      },
+      {
+        title: "Name",
+        field: "name"
+      },
+      {
+        title: "Group",
+        field: "group"
+      }
+    ];
+    return <MaterialTable title="" data={data} columns={columns} />;
+  };
   const renderTable = () => {
     return (
       data &&
@@ -85,7 +108,7 @@ const About = () => {
   return (
     <React.Fragment>
       <div className="user">Users</div>
-      <div id="app">{master()}</div>
+      <div id="app">{customTable()}</div>
       <div className="policies"> Policies </div>
       <div>
         <table>
