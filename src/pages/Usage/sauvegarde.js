@@ -45,9 +45,10 @@ const Sauvegarde = () => {
   useEffect(() => {
     (async () => {
       const json = await axios.get(url);
-      setData(json.data);
+      setData(json.data.body);
     })();
   }, []);
+  console.log(data);
   /*useEffect(() => {
     axios.get(url).then((json) => setData(json.data));
 
@@ -204,6 +205,7 @@ const Sauvegarde = () => {
       <div className="ct">{trig && "Chart"}</div>
       <div className="ap">{trig && chart()}</div>
     </React.Fragment>
+    //<div> In progress </div>
   );
 };
 
