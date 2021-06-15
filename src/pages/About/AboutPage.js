@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM, { render } from "react-dom";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
+import {useForm} from "react-hook-form";
 import ReactTable from "react-table";
 import MaterialTable from "material-table";
 
@@ -27,6 +28,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import "./table.css";
 
 const About = () => {
+  const {handleSubmit} = useForm();
   const [data, setData] = useState([]);
   const [trigger, setTrigger] = useState(false);
   const url = "https://4veg3aetvd.execute-api.us-east-2.amazonaws.com/dev/user";
@@ -34,10 +36,13 @@ const About = () => {
     axios.get(url).then((json) => setData(json.data));
 
     //console.log(data);
-  });
+  },[]);
   //console.log(data);
   var temp = data;
   console.log(temp);
+  const onSubmit = data => {
+    console.log(data);
+  }
   const customTable = () => {
     const data = temp;
     const columns = [
@@ -54,7 +59,11 @@ const About = () => {
         field: "group"
       }
     ];
-    return <MaterialTable title="" data={data} columns={columns} />;
+    return <MaterialTable title="" data={data} columns={columns} 
+    editable = {{
+      onRowUpdate: (newData,oldData) => handleSubmit(onSubmit)()
+    }}
+    />;
   };
   const renderTable = () => {
     return (
@@ -103,7 +112,9 @@ const About = () => {
         ancessor: "tl"
       }
     ];
-    return <ReactTable data={data} columns={columns} />;
+    return <ReactTable data={data} columns={columns} 
+    
+    />;
   };
   return (
     <React.Fragment>
