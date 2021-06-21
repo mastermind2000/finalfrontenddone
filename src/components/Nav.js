@@ -49,10 +49,10 @@ const Navigation = styled.header`
     color: #ccc;
   }
   a {
-    color: #222;
-    opacity: 0.55;
-    transition: all 0.6s;
-    color: #222;
+    /*color: #222;*/
+    /*opacity: 0.55;*/
+    /*transition: all 0.6s;
+    /*color: #222;*/
     font-size: 1em;
   }
   a:hover {
@@ -77,11 +77,11 @@ const Navigation = styled.header`
       font-size: 1em;
       text-decoration: none;
       .active {
-        color: tomato;
+        color: red;
       }
     }
     a.active {
-      color: #222;
+      color: red;
     }
   }
 
@@ -183,7 +183,7 @@ class Nav extends Component {
             onClick={(e) => this.handleToggle(e)}
           />
           <ul className={`collapsed ${isExpanded ? "is-expanded" : ""}`}>
-            <NavLink activeClassName="active" to="/">
+            <NavLink activeClassName="active" to="/createuser">
               <li>Create User</li>
             </NavLink>
             <NavLink activeClassName="active" to="/contact">
