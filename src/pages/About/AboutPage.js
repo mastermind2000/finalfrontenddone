@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import ReactDOM, { render } from "react-dom";
 import axios from "axios";
 import { Form, Field } from "react-final-form";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import ReactTable from "react-table";
 import MaterialTable from "material-table";
+import AddIcon from "@material-ui/icons/Add";
+import Icon from "@material-ui/core/Icon";
+import DeleteIcon from "@material-ui/icons/Delete";
+//import Button from "@material-ui/core/Button";
 
 //import '../../react-table/react-table.css';
 import { TextField, Checkbox, Radio, Select } from "final-form-material-ui";
@@ -28,7 +32,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import "./table.css";
 
 const About = () => {
-  const {handleSubmit} = useForm();
+  const { handleSubmit } = useForm();
   const [data, setData] = useState([]);
   const [trigger, setTrigger] = useState(false);
   const url = "https://4veg3aetvd.execute-api.us-east-2.amazonaws.com/dev/user";
@@ -36,13 +40,13 @@ const About = () => {
     axios.get(url).then((json) => setData(json.data));
 
     //console.log(data);
-  },[]);
+  }, []);
   //console.log(data);
   var temp = data;
   console.log(temp);
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log(data);
-  }
+  };
   const customTable = () => {
     const data = temp;
     const columns = [
@@ -59,11 +63,16 @@ const About = () => {
         field: "group"
       }
     ];
-    return <MaterialTable title="" data={data} columns={columns} 
-    editable = {{
-      onRowUpdate: (newData,oldData) => handleSubmit(onSubmit)()
-    }}
-    />;
+    return (
+      <MaterialTable
+        title=""
+        data={data}
+        columns={columns}
+        editable={{
+          onRowUpdate: (newData, oldData) => handleSubmit(onSubmit)()
+        }}
+      />
+    );
   };
   const renderTable = () => {
     return (
@@ -112,9 +121,14 @@ const About = () => {
         ancessor: "tl"
       }
     ];
-    return <ReactTable data={data} columns={columns} 
-    
-    />;
+    return <ReactTable data={data} columns={columns} />;
+  };
+  const DeleteButtom = () => {
+    return (
+      <Button onClick={() => (window.location = "/contact")}>
+        <DeleteIcon />
+      </Button>
+    );
   };
   return (
     <React.Fragment>
