@@ -123,10 +123,17 @@ const About = () => {
     ];
     return <ReactTable data={data} columns={columns} />;
   };
-  const DeleteButtom = () => {
+  const DeleteButton = () => {
     return (
       <Button onClick={() => (window.location = "/contact")}>
         <DeleteIcon />
+      </Button>
+    );
+  };
+  const AddButton = () => {
+    return (
+      <Button onClick={() => (window.location = "/createuser")}>
+        <AddIcon />
       </Button>
     );
   };
@@ -134,6 +141,10 @@ const About = () => {
     <React.Fragment>
       <div className="user">Users</div>
       <div id="app">{customTable()}</div>
+      <div id="routing">
+        {DeleteButton()}
+        {AddButton()}
+      </div>
     </React.Fragment>
   );
 };
